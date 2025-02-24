@@ -1,0 +1,35 @@
+@import "variables";
+
+.users-page {
+
+  padding: 1rem;
+  width: calc(100vw - var(--sidebar-width));
+  max-width: calc(100vw - var(--sidebar-width));
+
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin-bottom: 1rem;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="dashboard-layout">
+  <nav class="sidebar">
+    <h2>Library Admin</h2>
+    <ul>
+      <li><a routerLink="/dashboard/users">Users</a></li>
+      <li><a routerLink="/dashboard/products">Products</a></li>
+      <li><a routerLink="/dashboard/persons">Persons</a></li>
+    </ul>
+  </nav>
+
+  <header class="header">
+    <h1>Dashboard</h1>
+    <button (click)="logout()">Logout</button>
+  </header>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+<!-- <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <nav class="sidebar">
+        <h2>Library Admin</h2>
+        <ul>
+          <li><a routerLink="/dashboard/users">Users</a></li>
+          <li><a routerLink="/dashboard/products">Products</a></li>
+          <li><a routerLink="/dashboard/persons">Persons</a></li>
+        </ul>
+      </nav>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>-->
+</div>

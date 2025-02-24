@@ -1,0 +1,38 @@
+<div class="persons-page">
+  <h2>Persons</h2>
+
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Search by first name, last name, or email..."
+      [formControl]="personsSearchControl"/>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Website</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let person of paginatedPersons">
+      <td>{{ person.firstname }}</td>
+      <td>{{ person.lastname }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.phone }}</td>
+      <td>{{ person.website }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-paginator
+    [totalItems]="filteredPersons.length"
+    [itemsPerPage]="itemsPerPage"
+    [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)">
+  </app-paginator>
+</div>

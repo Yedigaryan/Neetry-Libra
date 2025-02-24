@@ -1,0 +1,33 @@
+@import "variables";
+
+.persons-page {
+  padding: 1rem;
+  min-width: calc(100vw - var(--sidebar-width));
+  max-width: calc(100vw - var(--sidebar-width));
+
+  .search-container {
+    margin-bottom: 1rem;
+    input {
+      width: 100%;
+      padding: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+  }
+
+  table {
+    min-width: calc(100vw - var(--sidebar-width));
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+  }
+}

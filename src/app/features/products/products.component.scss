@@ -1,0 +1,47 @@
+@import "variables";
+
+.products-page {
+  padding: 1rem;
+  min-width: calc(100vw - var(--sidebar-width));
+  max-width: calc(100vw - var(--sidebar-width));
+
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .sorting {
+    margin-bottom: 1rem;
+
+    label {
+      margin-right: 0.5rem;
+    }
+
+    select {
+      padding: 5px;
+    }
+  }
+
+  .product-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .show-more {
+    text-align: center;
+    margin-top: 1rem;
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .loading {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}

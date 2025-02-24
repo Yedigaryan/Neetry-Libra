@@ -1,0 +1,30 @@
+<div class="products-page">
+  <h2>Products</h2>
+
+  <div class="sorting">
+    <label for="sort-select">Sort by Name:</label>
+    <select [formControl]="productsSortControl" id="sort-select">
+      <option value="none" [selected]="sortOption === 'none'">None</option>
+      <option value="asc" [selected]="sortOption === 'asc'">Ascending</option>
+      <option value="desc" [selected]="sortOption === 'desc'">Descending</option>
+    </select>
+  </div>
+
+  <div class="product-cards-container">
+    @for (product of products; track product.id) {
+      <app-product-card
+        [product]="product"/>
+    }
+  </div>
+
+  @if (canShowMore() && !loading) {
+    <div class="show-more">
+      <button (click)="showMore()">Show More</button>
+    </div>
+  }
+  @if (loading) {
+    <div class="loading">
+      Loading...
+    </div>
+  }
+</div>

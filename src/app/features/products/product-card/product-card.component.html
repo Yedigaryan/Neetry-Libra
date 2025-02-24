@@ -1,0 +1,5 @@
+<div class="product-card">
+  <img (error)="product.image = 'assets/images/fallback-image.png'" [ngSrc]="product.image || 'assets/images/fallback-image.png'" alt="{{ product.name }}" width="50" height="50" />
+  <h3>{{ product.name }}</h3>
+  <p class="price">{{ product.price | currency }}</p>
+</div>
