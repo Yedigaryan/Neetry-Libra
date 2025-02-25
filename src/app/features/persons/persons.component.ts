@@ -21,6 +21,8 @@ export class PersonsComponent implements OnInit {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   persons: IPerson[] = [];
   filteredPersons: IPerson[] = [];
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'website'];
+
 
   currentPage: number = 1;
   itemsPerPage: number = 10;

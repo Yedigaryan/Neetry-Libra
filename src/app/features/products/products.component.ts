@@ -1,11 +1,12 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { IProduct, IProductsResponse } from '@core/interfaces/IProduct';
+import { IProductsResponse } from '@core/interfaces/IProduct';
 import { ProductsService } from '@core/services/products.service';
 import { SortingType } from '@core/types/sorting.type';
 import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { ProductItem } from '@core/types/product.type';
 
 @Component({
   selector: 'app-products',
@@ -15,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
 
-  products: IProduct[] = [];
+  products: ProductItem[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 10;
   sortOption: SortingType = 'none';
@@ -28,7 +29,6 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.route.snapshot.data[\'resource\']', this.route.snapshot.data['resource'])
     this.resource = this.route.snapshot.data['resource'] || 'products';
     this.loadProducts();
     this.productsSortControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((search: SortingType) => {
@@ -57,12 +57,19 @@ export class ProductsComponent implements OnInit {
 
   applySorting(): void {
     if (this.sortOption === 'asc') {
-      this.products.sort((a, b) => a.name.localeCompare(b.name));
+      this.products.sort((a: ProductItem, b: ProductItem) => {
+        const aValue: string = 'title' in a ? (a.title || '') : (a.name || '');
+        const bValue: string = 'title' in b ? (b.title || '') : (b.name || '');
+        return aValue.localeCompare(bValue);
+      });
     } else if (this.sortOption === 'desc') {
-      this.products.sort((a, b) => b.name.localeCompare(a.name));
+      this.products.sort((a: ProductItem, b: ProductItem) => {
+        const aValue: string = 'title' in a ? (a.title || '') : (a.name || '');
+        const bValue: string = 'title' in b ? (b.title || '') : (b.name || '');
+        return bValue.localeCompare(aValue);
+      });
     }
   }
-
   onSortChange(sortValue: SortingType): void {
     this.sortOption = sortValue;
     this.applySorting();

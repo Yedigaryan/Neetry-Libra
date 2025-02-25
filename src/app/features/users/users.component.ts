@@ -21,6 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class UsersComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
   users: IUser[] = [];
+  displayedColumns: string[] = ['id', 'email', 'first_name', 'last_name', 'avatar', 'actions'];
+
 
   constructor(
     private usersService: UsersService,

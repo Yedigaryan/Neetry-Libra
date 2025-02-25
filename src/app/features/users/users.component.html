@@ -1,31 +1,39 @@
 <div class="users-page">
   <h2>Users</h2>
-  <button (click)="createUser()">Create User</button>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-        <th>Avatar</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.first_name }}</td>
-      <td>{{ user.last_name }}</td>
-      <td>
-        <img [ngSrc]="user.avatar || 'assets/images/fallback-image.png'" alt="Avatar" width="50" height="50">
+  <button mat-raised-button (click)="createUser()">Create User</button>
+  <table mat-table [dataSource]="users">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element"> {{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element"> {{ element.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let element"> {{ element.first_name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element"> {{ element.last_name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef>Avatar</th>
+      <td mat-cell *matCellDef="let element">
+        <img [ngSrc]="element.avatar || 'assets/images/fallback-image.png'" alt="Avatar" width="50" height="50">
       </td>
-      <td>
-        <button (click)="editUser(user)">Edit</button>
-        <button (click)="deleteUser(user)">Delete</button>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="users-page__buttons">
+          <button mat-raised-button mat-ripple (click)="editUser(element)">Edit</button>
+          <button mat-button color="warn" (click)="deleteUser(element)">Delete</button>
+        </div>
       </td>
-    </tr>
-    </tbody>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>

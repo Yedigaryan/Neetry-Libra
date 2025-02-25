@@ -26,8 +26,8 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="userForm.invalid">
+  <button mat-button color="primary" (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="accent" (click)="onSave()" [disabled]="userForm.invalid">
     {{ mode === 'create' ? 'Create' : 'Update' }}
   </button>
 </mat-dialog-actions>
