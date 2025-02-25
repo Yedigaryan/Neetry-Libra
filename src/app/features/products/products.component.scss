@@ -2,13 +2,9 @@
 
 .products-page {
   padding: 1rem;
-  min-width: calc(100vw - var(--sidebar-width));
-  max-width: calc(100vw - var(--sidebar-width));
-
-
-  h2 {
-    margin-bottom: 1rem;
-  }
+  position: relative;
+  width: calc(100vw - var(--sidebar-width));
+  min-height: 40vh;
 
   .sorting {
     margin-bottom: 1rem;
@@ -38,10 +34,5 @@
       font-size: 1rem;
       cursor: pointer;
     }
-  }
-
-  .loading {
-    text-align: center;
-    margin-top: 1rem;
   }
 }

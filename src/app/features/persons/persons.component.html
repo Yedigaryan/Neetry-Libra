@@ -1,5 +1,4 @@
 <div class="persons-page">
-  <h2>Persons</h2>
 
   <div class="search-container">
     <mat-form-field >
@@ -13,7 +12,9 @@
 
   </div>
   @if (loading$ | async) {
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <div class="loader-wrapper">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
   } @else {
     <table mat-table [dataSource]="paginatedPersons">
       <ng-container matColumnDef="firstname">
@@ -39,7 +40,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  }
 
   <app-paginator
     [totalItems]="filteredPersons.length"
@@ -47,4 +47,6 @@
     [currentPage]="currentPage"
     (pageChange)="onPageChange($event)">
   </app-paginator>
+  }
+
 </div>

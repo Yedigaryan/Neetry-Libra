@@ -2,8 +2,9 @@
 
 .persons-page {
   padding: 1rem;
-  min-width: calc(100vw - var(--sidebar-width));
-  max-width: calc(100vw - var(--sidebar-width));
+  width: calc(100vw - $sidebar-width);
+  min-height: 40vh;
+  position: relative;
 
   .search-container {
     margin-bottom: 1rem;
@@ -16,18 +17,19 @@
   }
 
   table {
-    min-width: calc(100vw - var(--sidebar-width));
+    min-width: calc(100vw - $sidebar-width);
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;
 
     th, td {
       padding: 8px;
-      border: 1px solid #ddd;
+      border: 1px solid $border-color;
       text-align: left;
     }
 
     th {
-      background-color: #f4f4f4;
+      background-color: $th-bg;
     }
   }
 }

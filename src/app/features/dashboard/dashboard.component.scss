@@ -1,11 +1,5 @@
 @import "variables";
 
-:root {
-  --primary-bg: #1f2937;
-  --secondary-bg: #374151;
-  --text-color: white;
-}
-
 .dashboard-layout {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -16,9 +10,9 @@
 
 .sidebar {
   grid-area: 1 / 1 / 10 / 2;
-  min-width: var(--sidebar-width);
-  background-color: var(--primary-bg);
-  color: var(--text-color);
+  width: $sidebar-width;
+  background-color: $primary-bg;
+  color: $text-color-white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,58 +23,85 @@
 
 .sidebar h2 {
   margin-bottom: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 30px;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
   width: 100%;
+  position: sticky;
+  top: 160px;
 }
 
 .sidebar li {
   width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: scale 0.3s;
+  border-radius: 0.7rem;
+  &:hover {
+    scale: 1.08;
+    opacity: 0.8;
+  }
 }
 
 .sidebar a,
 .sidebar button {
-  display: block;
-  color: var(--text-color);
+  display: flex;
+  color: $text-color-white;
   text-decoration: none;
   padding: 10px;
   width: 100%;
   border: none;
   background: none;
   cursor: pointer;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.7rem;
+  &.active {
+    background-color: $active-bg;
+    color: $text-color-black;
+  }
 }
 
 .sidebar a:hover,
 .sidebar button:hover {
-  background-color: var(--secondary-bg);
+  background-color: $secondary-bg;
 }
 
 .header {
   grid-area: 1 / 2 / 2 / 6;
-  background-color: var(--secondary-bg);
-  color: var(--text-color);
+  background-color: $secondary-bg;
+  color: $text-color-white;
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  max-height: 5rem;
+  height: $header-height;
   border: 1px solid;
   border-radius: 1rem;
   justify-content: space-between;
+  position: sticky;
+  top: 10px;
+  z-index: 1;
+  width: calc(100vw - $sidebar-width - 100px);
+
   h1 {
     margin-bottom: 0;
   }
 }
 
 .content {
-  margin-top: 6rem;
+  margin-top: calc($header-height + 1rem);
   grid-area: 1 / 2 / 10 / 6;
   padding: 1rem;
   overflow-y: auto;
-  min-width: calc(100vw - var(--sidebar-width));
+  width: calc(100vw - $sidebar-width - 100px);
 }
 
 @media (max-width: 768px) {
@@ -89,7 +110,7 @@
   }
 
   .sidebar {
-    width: 60px;
+    width: $sidebar-width-mobile;
     overflow: hidden;
   }
 
