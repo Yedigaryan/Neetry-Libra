@@ -8,16 +8,14 @@
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
-  grid-template-rows: 100px 1fr;
-  height: 100vh;
-  grid-template-areas:
-    "sidebar header"
-    "sidebar content";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
 }
 
 .sidebar {
-  grid-area: sidebar;
+  grid-area: 1 / 1 / 6 / 2;
   min-width: var(--sidebar-width);
   background-color: var(--primary-bg);
   color: var(--text-color);
@@ -25,6 +23,8 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid black;
 }
 
 .sidebar h2 {
@@ -61,20 +61,20 @@
 
 /* Header Styles */
 .header {
-  grid-area: header;
+  grid-area: 1 / 2 / 2 / 6;
   background-color: var(--secondary-bg);
   color: var(--text-color);
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  max-height: 100px;
+  max-height: 60px;
   border: 1px solid;
-  border-radius: 2rem;;
+  border-radius: 1rem;
   justify-content: space-between;
 }
 
 .content {
-  grid-area: content;
+  grid-area: 2 / 2 / 6 / 6;
   padding: 1rem;
   overflow-y: auto;
   min-width: calc(100vw - var(--sidebar-width));

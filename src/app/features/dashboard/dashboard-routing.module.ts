@@ -8,12 +8,23 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
+        path: '',
+        loadComponent: () =>
+          import('./dashboard-content/dashboard-content.component').then((m) => m.DashboardContentComponent)
+      },
+      {
         path: 'users',
         loadChildren: () =>
           import('../../features/users/users.module').then((m) => m.UsersModule)
       },
       {
         path: 'products',
+        loadChildren: () =>
+          import('../../features/products/products.module').then((m) => m.ProductsModule)
+      },
+      {
+        path: 'books',
+        data: {resource: 'books'},
         loadChildren: () =>
           import('../../features/products/products.module').then((m) => m.ProductsModule)
       },

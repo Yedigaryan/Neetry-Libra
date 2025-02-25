@@ -4,6 +4,7 @@ import { PersonsComponent } from './persons.component';
 import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { PersonsRoutingModule } from './persons-routing.module';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { PersonsRoutingModule } from './persons-routing.module';
     CommonModule,
     PaginatorComponent,
     ReactiveFormsModule,
-    PersonsRoutingModule
+    PersonsRoutingModule,
+    MatProgressSpinner
   ]
 })
 export class PersonsModule {

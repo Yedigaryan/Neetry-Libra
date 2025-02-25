@@ -15,18 +15,18 @@ export const APP_ROUTES: Routes = [
     ]
   },
   {
+    path: '**',
+    canMatch: [authGuard],
+    redirectTo: 'dashboard',
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',
-    canMatch: [authGuard],
-    redirectTo: 'dashboard',
-  },
-  {
-    path: '**',
-    redirectTo: '/login'
+    redirectTo: 'login'
   }
 ];
 

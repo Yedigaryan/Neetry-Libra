@@ -1,5 +1,5 @@
 <div class="products-page">
-  <h2>Products</h2>
+  <h2>{{ resource === 'books' ? 'Books' : 'Products' }}</h2>
 
   <div class="sorting">
     <label for="sort-select">Sort by Name:</label>
@@ -13,7 +13,7 @@
   <div class="product-cards-container">
     @for (product of products; track product.id) {
       <app-product-card
-        [product]="product"/>
+        [item]="product"/>
     }
   </div>
 

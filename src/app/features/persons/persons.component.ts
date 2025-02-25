@@ -2,12 +2,14 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 
 // Interfaces
-import { Person } from '@core/interfaces/person';
+import { IPerson, IPersonResponse } from '@core/interfaces/IPerson';
 
 // Services
 import { PersonsService } from '@core/services/persons.service';
+import { SortingType } from '@core/types/sorting.type';
 
 @Component({
   selector: 'app-persons',
@@ -16,36 +18,57 @@ import { PersonsService } from '@core/services/persons.service';
 })
 export class PersonsComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
-  persons: Person[] = [];
-  filteredPersons: Person[] = [];
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  persons: IPerson[] = [];
+  filteredPersons: IPerson[] = [];
 
   currentPage: number = 1;
   itemsPerPage: number = 10;
+  totalItems: number = 0;
 
   searchTerm: string = '';
   personsSearchControl: FormControl<string> = new FormControl<string>('', {nonNullable: true});
+  private phoneSortOption: SortingType = 'none';
+  private firstNameSortOption: SortingType = 'none';
 
   constructor(private personsService: PersonsService) {
   }
 
   ngOnInit(): void {
+    this.initializeData();
+    this.setupSearchSubscription();
+  }
+
+  private initializeData(): void {
+    this.loading$.next(true);
     this.fetchPersons();
-    this.personsSearchControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((search: string) => {
-      this.onSearchChange(search);
-    })
+  }
+
+  private setupSearchSubscription(): void {
+    this.personsSearchControl.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((search: string) => {
+        this.onSearchChange(search);
+      });
   }
 
   fetchPersons(): void {
-    this.personsService.getPersons().subscribe(response => {
-      this.persons = response.data;
-      this.applyFilters();
+    this.personsService.getPersons().subscribe({
+      next: (response: IPersonResponse) => {
+        this.persons = response.data;
+        this.totalItems = response.total;
+        this.applyFilters();
+      },
+      complete: () => {
+        this.loading$.next(false);
+      }
     });
   }
 
   applyFilters(): void {
     // TODO We can use Fuzzy for advanced search if needed
     if (this.searchTerm) {
-      const term = this.searchTerm.toLowerCase();
+      const term: string = this.searchTerm.toLowerCase();
       this.filteredPersons = this.persons.filter(person =>
         person.firstname.toLowerCase().includes(term) ||
         person.lastname.toLowerCase().includes(term) ||
@@ -57,9 +80,9 @@ export class PersonsComponent implements OnInit {
     this.currentPage = 1;
   }
 
-  get paginatedPersons(): Person[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+  get paginatedPersons(): IPerson[] {
+    const startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex: number = startIndex + this.itemsPerPage;
     return this.filteredPersons.slice(startIndex, endIndex);
   }
 
@@ -70,5 +93,34 @@ export class PersonsComponent implements OnInit {
   onSearchChange(value: string): void {
     this.searchTerm = value;
     this.applyFilters();
+  }
+
+  onPhoneSort(): void {
+    if (this.phoneSortOption === 'none') {
+      this.phoneSortOption = 'asc';
+    }
+    console.log(this.phoneSortOption);
+    if (this.phoneSortOption === 'asc') {
+      this.filteredPersons.sort((a: IPerson, b: IPerson) => a.phone.localeCompare(b.phone));
+      this.phoneSortOption = 'desc';
+    } else if (this.phoneSortOption === 'desc') {
+      this.phoneSortOption = 'asc';
+      this.filteredPersons.sort((a: IPerson, b: IPerson) => b.phone.localeCompare(a.phone));
+    }
+
+  }
+
+  onFirstNameSort(): void {
+    if (this.firstNameSortOption === 'none') {
+      this.firstNameSortOption = 'asc';
+    }
+    if (this.firstNameSortOption === 'asc') {
+      this.firstNameSortOption = 'desc';
+      this.filteredPersons.sort((a: IPerson, b: IPerson) => a.firstname.localeCompare(b.firstname));
+    } else if (this.firstNameSortOption === 'desc') {
+      this.firstNameSortOption = 'asc';
+      this.filteredPersons.sort((a: IPerson, b: IPerson) => b.firstname.localeCompare(a.firstname));
+    }
+
   }
 }

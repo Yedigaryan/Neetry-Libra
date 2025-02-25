@@ -7,11 +7,6 @@ import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

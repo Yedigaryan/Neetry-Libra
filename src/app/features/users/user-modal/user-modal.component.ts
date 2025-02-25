@@ -6,11 +6,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 // Interfaces
-import { User } from '@core/interfaces/user';
+import { IUser } from '@core/interfaces/IUser';
 
 export interface UserModalData {
   mode: 'create' | 'edit';
-  user?: User;
+  user?: IUser;
 }
 
 @Component({

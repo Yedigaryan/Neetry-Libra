@@ -1,5 +1,10 @@
 <div class="product-card">
-  <img (error)="product.image = 'assets/images/fallback-image.png'" [ngSrc]="product.image || 'assets/images/fallback-image.png'" alt="{{ product.name }}" width="50" height="50" />
-  <h3>{{ product.name }}</h3>
-  <p class="price">{{ product.price | currency }}</p>
+  <img (error)="item.image = 'assets/images/fallback-image.png'"
+       [ngSrc]="item.image || 'assets/images/fallback-image.png'" width="50" height="50" [alt]="displayTitle"/>
+  <h3>{{ displayTitle }}</h3>
+  @if (displayPrice !== null) {
+    <p class="price">{{ displayPrice | currency }}</p>
+  } @else {
+    <p class="description">{{ item.description }}</p>
+  }
 </div>

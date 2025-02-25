@@ -1,15 +1,15 @@
-interface Image {
+interface iImage {
   title: string;
   description: string;
   url: string;
 }
 
-export interface Product {
+export interface IProduct {
   id: number;
   name: string;
   price: number;
   image: string;
-  images: Image;
+  images: iImage;
   description: string;
   ean: string;
   upc: string;
@@ -19,12 +19,12 @@ export interface Product {
   tags: string[];
 }
 
-export interface ProductsResponse {
+export interface IProductsResponse {
   status: string;
   code: number;
   total: number;
   locale: string;
-  data: Product[];
+  data: IProduct[];
   page: number;
   limit: number;
 }

@@ -7,7 +7,7 @@ import { UserModalComponent } from './user-modal/user-modal.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 // Interfaces
-import { User } from '@core/interfaces/user';
+import { IUser } from '@core/interfaces/IUser';
 
 // Services
 import { UsersService } from '@core/services/users.service';
@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class UsersComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
-  users: User[] = [];
+  users: IUser[] = [];
 
   constructor(
     private usersService: UsersService,
@@ -40,6 +40,8 @@ export class UsersComponent implements OnInit {
   createUser(): void {
     const dialogRef = this.dialog.open(UserModalComponent, {
       width: '400px',
+      // position: { top: '50%', left: '50%' },
+      // panelClass: 'centered-dialog',
       data: { mode: 'create' }
     });
 
@@ -50,7 +52,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  editUser(user: User): void {
+  editUser(user: IUser): void {
     const dialogRef = this.dialog.open(UserModalComponent, {
       width: '400px',
       data: { mode: 'edit', user }
@@ -63,7 +65,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  deleteUser(user: User): void {
+  deleteUser(user: IUser): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: { message: 'Are you sure you want to delete this user?' }
