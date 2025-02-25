@@ -19,7 +19,7 @@
 
   @if (canShowMore() && !loading) {
     <div class="show-more">
-      <button (click)="showMore()">Show More</button>
+      <button mat-raised-button color="primary" (click)="showMore()">Show More</button>
     </div>
   }
   @if (loading) {

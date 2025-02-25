@@ -5,6 +5,17 @@ import { PaginatorComponent } from '../../shared/components/paginator/paginator.
 import { ReactiveFormsModule } from "@angular/forms";
 import { PersonsRoutingModule } from './persons-routing.module';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from '@angular/material/input';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from '@angular/material/table';
 
 
 @NgModule({
@@ -14,7 +25,20 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     PaginatorComponent,
     ReactiveFormsModule,
     PersonsRoutingModule,
-    MatProgressSpinner
+    MatProgressSpinner,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef
   ]
 })
 export class PersonsModule {

@@ -1,10 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
   standalone: true,
+  imports: [
+    MatButton
+  ]
 })
 export class PaginatorComponent {
   @Input() totalItems: number = 0;

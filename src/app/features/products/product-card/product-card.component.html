@@ -1,10 +1,18 @@
-<div class="product-card">
-  <img (error)="item.image = 'assets/images/fallback-image.png'"
-       [ngSrc]="item.image || 'assets/images/fallback-image.png'" width="50" height="50" [alt]="displayTitle"/>
-  <h3>{{ displayTitle }}</h3>
-  @if (displayPrice !== null) {
-    <p class="price">{{ displayPrice | currency }}</p>
-  } @else {
-    <p class="description">{{ item.description }}</p>
-  }
-</div>
+<mat-card class="product-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ displayTitle }}</mat-card-title>
+    <mat-card-subtitle>
+      <img mat-card-image (error)="item.image = 'assets/images/fallback-image.png'"
+           [ngSrc]="item.image || 'assets/images/fallback-image.png'" width="50" height="50" [alt]="displayTitle"/>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if (displayPrice !== null) {
+      <p class="price">{{ displayPrice | currency }}</p>
+    } @else {
+      <p class="description">{{ item.description }}</p>
+    }
+  </mat-card-content>
+</mat-card>
