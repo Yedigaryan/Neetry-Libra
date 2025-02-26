@@ -44,6 +44,7 @@
   align-items: center;
   transition: scale 0.3s;
   border-radius: 0.7rem;
+
   &:hover {
     scale: 1.08;
     opacity: 0.8;
@@ -51,7 +52,7 @@
 }
 
 .sidebar a,
-.sidebar button {
+.sidebar button:not(.toggle-btn) {
   display: flex;
   color: $text-color-white;
   text-decoration: none;
@@ -64,6 +65,7 @@
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.7rem;
+
   &.active {
     background-color: $active-bg;
     color: $text-color-black;
@@ -71,8 +73,17 @@
 }
 
 .sidebar a:hover,
-.sidebar button:hover {
+.sidebar button:not(.toggle-btn):hover {
   background-color: $secondary-bg;
+}
+
+.toggle-btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: calc($header-height/2 - 20px);
+  color: $text-color-white;
+  z-index: 9;
 }
 
 .header {
@@ -105,17 +116,35 @@
 }
 
 @media (max-width: 768px) {
+
+  .toggle-btn {
+    display: block;
+  }
+
   .dashboard-layout {
-    grid-template-columns: 60px 1fr;
+    display: block;
   }
 
   .sidebar {
-    width: $sidebar-width-mobile;
-    overflow: hidden;
-  }
+    transition: width 0.3s ease;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
 
-  .sidebar h2 {
-    display: none;
+    &.collapsed {
+      width: 0;
+      padding: 0;
+      border: none;
+
+      .toggle-btn {
+        right: -50px;
+        background: $secondary-bg;
+      }
+
+      ul, h2 {
+        opacity: 0;
+      }
+    }
   }
 
   .sidebar a,
@@ -123,5 +152,18 @@
     text-align: center;
     padding: 10px;
     white-space: nowrap;
+  }
+
+  .header {
+    width: calc(100% - 33px);
+    margin-left: 0;
+    h1 {
+      margin-left: 40px;
+    }
+  }
+
+  .content {
+    width: 100%;
+    margin-left: 0;
   }
 }

@@ -1,11 +1,21 @@
+// Angular core imports
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
-import { IProductsResponse } from '@core/interfaces/IProduct';
-import { ProductsService } from '@core/services/products.service';
-import { SortingType } from '@core/types/sorting.type';
 import { FormControl } from '@angular/forms';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+// RxJS imports
+import { finalize } from 'rxjs/operators';
+
+// Application interfaces
+import { IProductsResponse } from '@core/interfaces/IProduct';
+import { IBookResponse } from '@core/interfaces/IBook';
+
+// Application services
+import { ProductsService } from '@core/services/products.service';
+
+// Types
+import { SortingType } from '@core/types/sorting.type';
 import { ProductItem } from '@core/types/product.type';
 
 @Component({
@@ -13,8 +23,7 @@ import { ProductItem } from '@core/types/product.type';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
-  private destroyRef: DestroyRef = inject(DestroyRef);
+export class ProductsComponent implements OnInit {  private destroyRef: DestroyRef = inject(DestroyRef);
 
   products: ProductItem[] = [];
   currentPage: number = 1;
@@ -41,7 +50,7 @@ export class ProductsComponent implements OnInit {
     if (this.resource === 'books') {
       this.productsService.getBooks(this.currentPage, this.itemsPerPage, this.sortOption)
         .pipe(finalize(() => this.loading = false))
-        .subscribe((response: IProductsResponse) => {
+        .subscribe((response: IBookResponse) => {
           this.products = this.products.concat(response.data);
           this.applySorting();
         });

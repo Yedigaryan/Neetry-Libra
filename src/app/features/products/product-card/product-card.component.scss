@@ -7,6 +7,7 @@
   transition: transform 0.3s ease;
   cursor: pointer;
   width: 20vw;
+  min-width: 12rem;
   height: 15rem;
 
   &:hover {

@@ -1,3 +1,4 @@
+// Application interfaces
 import { IResponse } from './IResponse';
 import { IBaseEntity } from './i-base-entity';
 

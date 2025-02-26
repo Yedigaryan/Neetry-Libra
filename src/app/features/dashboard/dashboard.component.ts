@@ -1,5 +1,5 @@
 // Angular Core imports
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 // Services
@@ -16,6 +16,9 @@ export class DashboardComponent {
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
   currentTitle: string = 'Dashboard';
+  // just a usage of signal not necessary
+  isSidebarCollapsed: WritableSignal<boolean> = signal(false);
+
 
   constructor() {
     this.router.events.pipe(
@@ -39,6 +42,9 @@ export class DashboardComponent {
     }
   }
 
+  toggleSidebar(): void {
+    this.isSidebarCollapsed.set(!this.isSidebarCollapsed());
+  }
 
   logout() {
     this.authService.logout();

@@ -1,10 +1,12 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// RxJS imports
 import { Observable, tap } from 'rxjs';
 
-export interface LoginResponse {
-  token: string;
-}
+// Application interfaces
+import { ILoginResponse } from '@core/interfaces/i-login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,8 @@ export class AuthService {
   private readonly loginUrl: string = 'https://reqres.in/api/login';
 
   constructor(private http: HttpClient) {}
-
-  login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.loginUrl, { email, password }).pipe(
+  login(email: string, password: string): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(this.loginUrl, { email, password }).pipe(
       tap(response => {
         localStorage.setItem(this.tokenKey, response.token);
       })

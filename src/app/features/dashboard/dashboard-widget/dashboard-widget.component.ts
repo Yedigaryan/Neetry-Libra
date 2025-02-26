@@ -1,3 +1,4 @@
+// Angular Core imports
 import { Component, Input } from '@angular/core';
 
 @Component({

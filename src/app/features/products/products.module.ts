@@ -1,12 +1,9 @@
-// Angular Core imports
+// Angular core imports
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-
-// Feature Components
-import { ProductsComponent } from './products.component';
-import { ProductCardComponent } from './product-card/product-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductsRoutingModule } from './products-routing.module';
+
+// Material imports
 import { MatButton } from "@angular/material/button";
 import {
   MatCard,
@@ -20,6 +17,12 @@ import { MatFormField, MatOption, MatSelect } from '@angular/material/select';
 import { MatLabel } from '@angular/material/form-field';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
+// Routing modules
+import { ProductsRoutingModule } from './products-routing.module';
+
+// Feature Components
+import { ProductsComponent } from './products.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [ProductsComponent, ProductCardComponent],
