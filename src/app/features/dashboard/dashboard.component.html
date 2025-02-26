@@ -1,17 +1,44 @@
 <div class="dashboard-layout">
-  <nav class="sidebar">
+  <nav class="sidebar" [class.collapsed]="isSidebarCollapsed()">
+    <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()">
+      <mat-icon>{{isSidebarCollapsed() ? 'menu' : 'close'}}</mat-icon>
+    </button>
     <h2>Library Admin</h2>
     <ul>
-      <li><a routerLink="/dashboard">Dashboard</a></li>
-      <li><a routerLink="/dashboard/users">Users</a></li>
-      <li><a routerLink="/dashboard/products">Products</a></li>
-      <li><a routerLink="/dashboard/books">Books</a></li>
-      <li><a routerLink="/dashboard/persons">Persons</a></li>
+      <li mat-ripple>
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <img ngSrc="/assets/images/dashboard.png" alt="dashboard" height="25" width="25">
+          Dashboard
+        </a>
+      </li>
+      <li mat-ripple>
+        <a routerLink="/dashboard/users" routerLinkActive="active">
+          <img ngSrc="/assets/images/users.svg" alt="users" height="25" width="25">
+          Users
+        </a>
+      </li>
+      <li mat-ripple>
+        <a routerLink="/dashboard/products" routerLinkActive="active">
+          <img ngSrc="/assets/images/products.webp" alt="products" height="25" width="25">
+          Products
+        </a>
+      </li>
+      <li mat-ripple>
+        <a routerLink="/dashboard/books" routerLinkActive="active">
+          <img ngSrc="/assets/images/books-stack-of-three.svg" alt="books" height="25" width="25">
+          Books
+        </a>
+      </li>
+      <li mat-ripple>
+        <a routerLink="/dashboard/persons" routerLinkActive="active">
+          <img ngSrc="/assets/images/persons.svg" alt="persons" height="25" width="25">
+          Persons
+        </a>
+      </li>
     </ul>
   </nav>
-
   <header class="header">
-    <h1>Dashboard</h1>
+    <h1>{{currentTitle}}</h1>
     <button mat-stroked-button color="accent" (click)="logout()">Logout</button>
   </header>
 

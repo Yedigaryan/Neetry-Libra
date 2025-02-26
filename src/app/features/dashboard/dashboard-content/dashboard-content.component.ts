@@ -1,10 +1,17 @@
+// Angular core imports
 import { Component, OnInit } from '@angular/core';
+
+// Application services
 import { ProductsService } from '@core/services/products.service';
 import { PersonsService } from '@core/services/persons.service';
 import { UsersService } from '@core/services/users.service';
+
+// Application interfaces
 import { IPersonResponse } from '@core/interfaces/IPerson';
 import { IProductsResponse } from '@core/interfaces/IProduct';
 import { IUsersResponse } from '@core/interfaces/IUser';
+
+// Components
 import { DashboardWidgetComponent } from '../dashboard-widget/dashboard-widget.component';
 
 @Component({
@@ -16,8 +23,7 @@ import { DashboardWidgetComponent } from '../dashboard-widget/dashboard-widget.c
   ],
   standalone: true
 })
-export class DashboardContentComponent implements OnInit {
-  totalUsers: number = 0;
+export class DashboardContentComponent implements OnInit {  totalUsers: number = 0;
   totalProducts: number = 0;
   totalPersons: number = 0;
 

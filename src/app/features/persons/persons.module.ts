@@ -1,9 +1,9 @@
+// Angular Core imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonsComponent } from './persons.component';
-import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { PersonsRoutingModule } from './persons-routing.module';
+
+// Material imports
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from '@angular/material/input';
@@ -16,6 +16,14 @@ import {
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable
 } from '@angular/material/table';
+
+// Routing modules
+import { PersonsRoutingModule } from './persons-routing.module';
+
+// Feature Components
+import { PersonsComponent } from './persons.component';
+import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
+
 
 
 @NgModule({

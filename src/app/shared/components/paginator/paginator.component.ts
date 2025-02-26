@@ -1,4 +1,7 @@
+// Angular Core imports
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+// Material imports
 import { MatButton } from '@angular/material/button';
 
 @Component({

@@ -1,13 +1,14 @@
 <div class="products-page">
-  <h2>{{ resource === 'books' ? 'Books' : 'Products' }}</h2>
 
   <div class="sorting">
-    <label for="sort-select">Sort by Name:</label>
-    <select [formControl]="productsSortControl" id="sort-select">
-      <option value="none" [selected]="sortOption === 'none'">None</option>
-      <option value="asc" [selected]="sortOption === 'asc'">Ascending</option>
-      <option value="desc" [selected]="sortOption === 'desc'">Descending</option>
-    </select>
+    <mat-form-field>
+      <mat-label>Sort by Name:</mat-label>
+      <mat-select [formControl]="productsSortControl">
+        <mat-option [value]="'none'">None</mat-option>
+        <mat-option [value]="'asc'">Ascending</mat-option>
+        <mat-option [value]="'desc'">Descending</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="product-cards-container">
@@ -23,8 +24,8 @@
     </div>
   }
   @if (loading) {
-    <div class="loading">
-      Loading...
-    </div>
+      <div class="loader-wrapper loading">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
   }
 </div>

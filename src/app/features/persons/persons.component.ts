@@ -4,12 +4,12 @@ import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 
-// Interfaces
+// Interfaces & Types
 import { IPerson, IPersonResponse } from '@core/interfaces/IPerson';
+import { SortingType } from '@core/types/sorting.type';
 
 // Services
 import { PersonsService } from '@core/services/persons.service';
-import { SortingType } from '@core/types/sorting.type';
 
 @Component({
   selector: 'app-persons',
@@ -101,7 +101,6 @@ export class PersonsComponent implements OnInit {
     if (this.phoneSortOption === 'none') {
       this.phoneSortOption = 'asc';
     }
-    console.log(this.phoneSortOption);
     if (this.phoneSortOption === 'asc') {
       this.filteredPersons.sort((a: IPerson, b: IPerson) => a.phone.localeCompare(b.phone));
       this.phoneSortOption = 'desc';

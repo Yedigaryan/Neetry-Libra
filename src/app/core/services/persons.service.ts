@@ -1,6 +1,11 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// RxJS imports
 import { Observable } from 'rxjs';
+
+// Application interfaces
 import { IPersonResponse } from '../interfaces/IPerson';
 
 @Injectable({

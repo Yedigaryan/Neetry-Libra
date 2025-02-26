@@ -1,9 +1,13 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+
+// RxJS imports
 import { Observable } from 'rxjs';
+
+// Application interfaces
 import { IProductsResponse } from '../interfaces/IProduct';
-
-
+import { IBookResponse } from '@core/interfaces/IBook';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +31,13 @@ export class ProductsService {
     return this.http.get<IProductsResponse>(this.productsUrl, { params });
   }
 
-  getBooks(page: number = 1, limit: number = 10, sort: 'asc' | 'desc' | 'none' = 'none'): Observable<IProductsResponse> {
+  getBooks(page: number = 1, limit: number = 10, sort: 'asc' | 'desc' | 'none' = 'none'): Observable<IBookResponse> {
     let params = new HttpParams()
       .set('_page', page.toString())
       .set('_limit', limit.toString());
     if (sort !== 'none') {
       params = params.set('sort', `title:${sort}`);
     }
-    return this.http.get<IProductsResponse>(this.booksUrl, { params });
+    return this.http.get<IBookResponse>(this.booksUrl, { params });
   }
 }

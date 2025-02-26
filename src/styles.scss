@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/azure-blue.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+.loader-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,5 +1,6 @@
+// Angular Core imports
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 
 import { APP_ROUTES } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -13,7 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideRouter(APP_ROUTES,
       withPreloading(PreloadAllModules),
-      // withDebugTracing(),
     ), provideAnimationsAsync(),
   ]
 };

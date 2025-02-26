@@ -1,4 +1,7 @@
+// Angular Core imports
 import { Component, Input } from '@angular/core';
+
+// Interfaces & Types
 import { IProduct } from '@core/interfaces/IProduct';
 import { ProductItem } from '@core/types/product.type';
 import { IBook } from '@core/interfaces/IBook';

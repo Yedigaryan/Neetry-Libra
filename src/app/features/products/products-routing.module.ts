@@ -1,5 +1,8 @@
+// Angular Core imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Feature Components
 import { ProductsComponent } from './products.component';
 
 const routes: Routes = [

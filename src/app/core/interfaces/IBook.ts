@@ -1,3 +1,4 @@
+// Application interfaces
 import { IResponse } from '@core/interfaces/IResponse';
 
 export interface IBook {

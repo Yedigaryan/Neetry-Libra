@@ -1,3 +1,16 @@
+@use '@angular/material' as mat;
+
+$sidebar-width: 250px;
+$sidebar-width-mobile: 60px;
+$header-height: 5rem;
+$primary-bg: rgb(64 80 181);
+$secondary-bg: #374151;
+$active-bg: #f8f9fa;
+$text-color-white: white;
+$text-color-black: rgba(0, 0, 0, 0.82);
+$border-color: #ddd;
+$th-bg: #f4f4f4;
+
 :root {
-  --sidebar-width: 250px;
+  --app-primary: mat.get-theme-color($primary-bg, primary, default);
 }

@@ -1,3 +1,4 @@
+// Angular Core imports
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,5 +10,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Neetry-Libra';
+  title: string = 'Neetry-Libra';
 }

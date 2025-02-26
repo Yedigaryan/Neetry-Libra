@@ -1,18 +1,17 @@
+// Angular core imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Guards
 import { authGuard } from '@core/guards/auth.guard';
+import { isLoginGuard } from '@core/guards/is-login.guard';
 
 export const APP_ROUTES: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     canMatch: [authGuard],
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule)
-      },
-    ]
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
   {
     path: '**',
@@ -21,6 +20,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'login',
+    canMatch: [isLoginGuard],
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
